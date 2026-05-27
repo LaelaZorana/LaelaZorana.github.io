@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laela Zorana — AI Evaluation Specialist & MLOps Engineer</title>
+  <meta name="description" content="Laela Zorana — AI Evaluation Specialist & MLOps Engineer building tools for the quality layer of AI. Remote from Burr Ridge, IL." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1F3864;
+      --navy-light: #2a4a84;
+      --navy-dark: #162850;
+      --accent: #4A90D9;
+      --accent-light: #6aaee8;
+      --white: #ffffff;
+      --gray-100: #f5f7fa;
+      --gray-200: #e8ecf2;
+      --gray-400: #9aa3b2;
+      --gray-600: #5a6275;
+      --gray-800: #2d3142;
+      --text: #1e2330;
+      --card-shadow: 0 2px 12px rgba(31,56,100,0.10);
+      --card-shadow-hover: 0 6px 24px rgba(31,56,100,0.18);
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: 0.85; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(31,56,100,0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    nav .logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+    }
+    nav ul a {
+      color: rgba(255,255,255,0.80);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--white); opacity: 1; }
+
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, var(--navy-light) 100%);
+      color: var(--white);
+      padding: 90px 2rem 80px;
+      text-align: center;
+    }
+    #hero .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 1.4rem;
+      border: 3px solid rgba(255,255,255,0.25);
+    }
+    #hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+    #hero .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 680px;
+      margin: 0 auto 0.6rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    #hero .location {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 2rem;
+    }
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+    .link-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .link-row a:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.65);
+      opacity: 1;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 2rem; }
+    section:nth-child(even) { background: var(--gray-100); }
+
+    .container { max-width: 1060px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .section-intro {
+      color: var(--gray-600);
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+      font-size: 1.02rem;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    #about p { color: var(--gray-600); margin-bottom: 1rem; font-size: 1rem; }
+    #about p:last-child { margin-bottom: 0; }
+    .about-highlights {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+    }
+    .about-highlights h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1.2rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-item:last-child { margin-bottom: 0; }
+    .highlight-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .highlight-item .hl-text strong { display: block; font-size: 0.92rem; color: var(--white); }
+    .highlight-item .hl-text span { font-size: 0.82rem; color: rgba(255,255,255,0.65); }
+
+    /* ── DEMO CARD ── */
+    #demo .demo-card {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .demo-icon {
+      font-size: 3.5rem;
+      flex-shrink: 0;
+    }
+    .demo-text h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .demo-text p {
+      color: rgba(255,255,255,0.80);
+      margin-bottom: 1.2rem;
+      max-width: 520px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.18); opacity: 1; }
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline-white:hover { border-color: var(--white); }
+
+    /* ── PROJECT CARDS ── */
+    .subsection-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-200);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .card-grid:last-child { margin-bottom: 0; }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+    .project-card .card-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .project-card .card-name .icon { font-size: 1.1rem; }
+    .project-card .card-desc {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+    }
+    .lang-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      background: var(--gray-100);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3572A5;
+      display: inline-block;
+    }
+    .gh-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .gh-link:hover { color: var(--navy); opacity: 1; }
+
+    /* ── KAGGLE ── */
+    .notebook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+    .notebook-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .notebook-card:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+    .notebook-card .nb-platform {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: #20BEFF;
+      margin-bottom: 0.4rem;
+    }
+    .notebook-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .notebook-card p {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+
+    /* ── SKILLS ── */
+    #skills .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .skill-block {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--card-shadow);
+    }
+    .skill-block h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--gray-200);
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      background: var(--gray-100);
+      color: var(--navy);
+      border: 1px solid var(--gray-200);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .skill-tag.accent {
+      background: rgba(74,144,217,0.10);
+      border-color: rgba(74,144,217,0.30);
+      color: var(--accent);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+    #contact h2 { color: var(--white); }
+    #contact .section-label { color: rgba(255,255,255,0.55); }
+    #contact .contact-note {
+      color: rgba(255,255,255,0.70);
+      max-width: 540px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+    }
+    .contact-email {
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 2rem;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7rem;
+      margin-bottom: 3rem;
+    }
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.80);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .contact-links a:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.55);
+      opacity: 1;
+    }
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.40);
+      text-align: center;
+      padding: 1.2rem 2rem;
+      font-size: 0.8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      #skills .skills-grid { grid-template-columns: 1fr; }
+      #demo .demo-card { flex-direction: column; gap: 1.2rem; }
+    }
+    @media (max-width: 520px) {
+      section { padding: 52px 1.2rem; }
+      #hero { padding: 60px 1.2rem 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">Laela Zorana</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="avatar">👩‍💻</div>
+  <h1>Laela Zorana</h1>
+  <p class="tagline">AI Evaluation Specialist &amp; MLOps Engineer<br>building tools for the quality layer of AI</p>
+  <p class="location">📍 Burr Ridge, IL &mdash; Remote</p>
+  <div class="link-row">
+    <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+    <a href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener">
+      🤗 HuggingFace
+    </a>
+    <a href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">
+      📊 Kaggle
+    </a>
+    <a href="https://www.linkedin.com/in/laelazorana" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:zoranalaela9@gmail.com">
+      ✉ Email
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">Background</p>
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <div>
+        <p>I bring 10+ years of structured content QA and rubric-based evaluation from regulated environments — the kind of work where precision isn't optional. My career has centered on building and applying evaluation frameworks that hold up under scrutiny, whether auditing risk documentation at Deutsche Bank's Chief Risk Office or designing inter-rater reliability systems for complex content.</p>
+        <p>Now I'm channeling that discipline into AI training data quality and MLOps engineering. I build the tooling that sits at the quality layer of AI pipelines — the systems that catch bad data before it shapes model behavior. That means RLHF evaluation frameworks, content policy reviewers, annotation quality validators, and the MLOps infrastructure to run it all reliably at scale.</p>
+        <p>I'm finishing my MS in Cloud Computing at Purdue, hold a Vanderbilt AI Agents certificate, and am Lean Six Sigma certified. I'm at the intersection of structured review discipline and ML engineering — and I think that combination is exactly what the AI quality layer needs right now.</p>
+      </div>
+      <div>
+        <div class="about-highlights">
+          <h3>Highlights</h3>
+          <div class="highlight-item">
+            <div class="highlight-icon">🏦</div>
+            <div class="hl-text">
+              <strong>Deutsche Bank, Chief Risk Office</strong>
+              <span>Structured QA in a regulated, high-stakes environment</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🎓</div>
+            <div class="hl-text">
+              <strong>MS Cloud Computing — Purdue University</strong>
+              <span>In progress</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🤖</div>
+            <div class="hl-text">
+              <strong>AI Agents Certificate — Vanderbilt</strong>
+              <span>Agentic systems & orchestration</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">⚡</div>
+            <div class="hl-text">
+              <strong>Lean Six Sigma Certified</strong>
+              <span>Process discipline applied to ML pipelines</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">📍</div>
+            <div class="hl-text">
+              <strong>Burr Ridge, IL — Remote</strong>
+              <span>Available for contract work globally</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section id="demo">
+  <div class="container">
+    <p class="section-label">Try It Live</p>
+    <h2>Interactive Demo</h2>
+    <div class="demo-card">
+      <div class="demo-icon">🎯</div>
+      <div class="demo-text">
+        <h3>AI Evaluation Toolkit — Live on HuggingFace Spaces</h3>
+        <p>Try the RLHF pairwise rater, content policy scorer, and observation/inference trainer live. No setup required — run real evaluations in your browser and see exactly how the quality layer works.</p>
+        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+          <a class="btn btn-white" href="https://huggingface.co/spaces/LaelaZ/ai-evaluation-toolkit" target="_blank" rel="noopener">
+            🚀 Launch Demo
+          </a>
+          <a class="btn btn-outline-white" href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener">
+            🤗 View on HuggingFace
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <p class="section-label">Open Source</p>
+    <h2>What I Build</h2>
+    <p class="section-intro">Production-ready tooling for AI training data quality control and MLOps. Every repo is built to solve a real problem in the pipeline.</p>
+
+    <p class="subsection-title">AI Training Data Quality Control</p>
+    <div class="card-grid">
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">🔍</span>ai-agent-scenario-qc</div>
+        <p class="card-desc">AI agent training scenario validator — checks coverage, consistency, and rubric alignment before scenarios enter training pipelines.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/ai-agent-scenario-qc" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">⚖️</span>rlhf-pairwise-rater</div>
+        <p class="card-desc">RLHF pairwise rating interface with self-consistency check — surfaces labeler disagreement and flags low-confidence pairs for review.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/rlhf-pairwise-rater" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">📋</span>content-policy-rater</div>
+        <p class="card-desc">Rubric-based content moderation reviewer — applies structured policy rubrics to flag edge cases, borderline content, and calibration drift.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/content-policy-rater" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">🖼️</span>ui-annotation-toolkit</div>
+        <p class="card-desc">Screenshot annotation toolkit with enforced observation/inference separation — reduces annotator bias and improves label consistency for UI data.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/ui-annotation-toolkit" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">📦</span>scorm-qa-validator</div>
+        <p class="card-desc">SCORM package validator for e-learning content QA — checks package structure, manifest integrity, and compliance requirements automatically.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/scorm-qa-validator" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="subsection-title">MLOps &amp; Performance Engineering</p>
+    <div class="card-grid">
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">🔧</span>mlops-training-pipeline</div>
+        <p class="card-desc">JAX/PyTorch training pipeline toolkit — modular components for distributed training, experiment tracking, and reproducible ML workflows.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/mlops-training-pipeline" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">⚡</span>triton-kernel-lab</div>
+        <p class="card-desc">Custom GPU kernels written in Triton — optimized attention, matmul, and reduction kernels for faster LLM inference and training.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/triton-kernel-lab" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-name"><span class="icon">📈</span>python-perf-optimizer</div>
+        <p class="card-desc">Python performance profiling &amp; benchmarking toolkit — identifies bottlenecks in data pipelines and ML preprocessing with actionable optimization paths.</p>
+        <div class="card-footer">
+          <span class="lang-badge"><span class="lang-dot"></span> Python</span>
+          <a class="gh-link" href="https://github.com/LaelaZorana/python-perf-optimizer" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KAGGLE -->
+<section id="kaggle">
+  <div class="container">
+    <p class="section-label">Notebooks</p>
+    <h2>Kaggle Work</h2>
+    <p class="section-intro">Practical notebooks exploring the engineering behind AI training pipelines, from Python optimization to full MLOps workflows.</p>
+    <div class="notebook-grid">
+
+      <div class="notebook-card">
+        <p class="nb-platform">Kaggle Notebook</p>
+        <h4>Python Performance Engineering</h4>
+        <p>Profiling and optimizing Python for ML workloads — memory management, vectorization, and pipeline speedups with real benchmark comparisons.</p>
+        <a class="gh-link" href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">
+          View on Kaggle →
+        </a>
+      </div>
+
+      <div class="notebook-card">
+        <p class="nb-platform">Kaggle Notebook</p>
+        <h4>MLOps Training Pipeline Practice</h4>
+        <p>End-to-end MLOps pipeline: data versioning, experiment tracking, model registry, and deployment patterns using open-source tooling.</p>
+        <a class="gh-link" href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">
+          View on Kaggle →
+        </a>
+      </div>
+
+      <div class="notebook-card">
+        <p class="nb-platform">Kaggle Notebook</p>
+        <h4>AI Training Data Quality Control</h4>
+        <p>Framework for measuring and improving training data quality — inter-rater agreement, outlier detection, and label consistency validation.</p>
+        <a class="gh-link" href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">
+          View on Kaggle →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Capabilities</p>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h3>AI / ML Engineering</h3>
+        <div class="skill-tags">
+          <span class="skill-tag accent">RLHF</span>
+          <span class="skill-tag accent">Content Evaluation</span>
+          <span class="skill-tag accent">MLOps</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">JAX</span>
+          <span class="skill-tag">Triton GPU Kernels</span>
+          <span class="skill-tag">HuggingFace</span>
+          <span class="skill-tag">Distributed Training</span>
+          <span class="skill-tag">Model Deployment</span>
+          <span class="skill-tag">Cloud Infrastructure</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Docker / Kubernetes</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h3>Quality &amp; Process</h3>
+        <div class="skill-tags">
+          <span class="skill-tag accent">Rubric-Based Evaluation</span>
+          <span class="skill-tag accent">Inter-Rater Agreement</span>
+          <span class="skill-tag accent">Structured Feedback</span>
+          <span class="skill-tag">Defect Detection</span>
+          <span class="skill-tag">Lean Six Sigma</span>
+          <span class="skill-tag">Regulatory QA</span>
+          <span class="skill-tag">Annotation QC</span>
+          <span class="skill-tag">Training Data Auditing</span>
+          <span class="skill-tag">Policy Compliance</span>
+          <span class="skill-tag">Risk Documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Get In Touch</p>
+    <h2>Let's Work Together</h2>
+    <p class="contact-note">Available for remote contract work — AI evaluation, MLOps engineering, and performance engineering. I work best on problems where precision and process discipline actually matter.</p>
+    <a class="contact-email" href="mailto:zoranalaela9@gmail.com">zoranalaela9@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .269.18.58.688.482C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener">🤗 HuggingFace</a>
+      <a href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">📊 Kaggle</a>
+      <a href="https://www.linkedin.com/in/laelazorana" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:zoranalaela9@gmail.com">✉ Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Laela Zorana &mdash; AI Evaluation Specialist &amp; MLOps Engineer &mdash; Burr Ridge, IL (Remote)</p>
+</footer>
+
+</body>
+</html>
