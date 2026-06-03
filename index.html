@@ -1,449 +1,757 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Laela Zorana, Applied ML / AI Engineer</title>
-<meta name="description" content="Laela Zorana, Applied ML and AI Engineer. I build deep learning and neural networks, and I evaluate them rigorously. Live demos, open source, and competition work in ML, AI, deep learning, and neural networks. Remote from Burr Ridge, IL." />
-<meta name="keywords" content="Machine Learning, AI, Deep Learning, Neural Networks, Applied ML, AI Engineer, MLOps, model evaluation" />
-<meta property="og:title" content="Laela Zorana, Applied ML / AI Engineer" />
-<meta property="og:description" content="I build deep learning and neural networks, and I evaluate them rigorously. Live demos you can click in 30 seconds." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Laela Zorana — AI Engineer | I ship production AI products end-to-end</title>
+<meta name="description" content="Laela Zorana, AI Engineer. I ship production AI products end-to-end across ML, full-stack, and cloud — grounded RAG, support automation, LLM security, smart-contract auditing, and high-throughput inference. Each one is a real, tested product with the numbers to prove it." />
+<meta name="keywords" content="AI Engineer, Machine Learning Engineer, Production AI, RAG, LLM, full-stack, MLOps, model evaluation, LLM security, data engineering" />
+<meta name="author" content="Laela Zorana" />
+<meta name="theme-color" content="#4f46e5" />
+
+<!-- Open Graph / social -->
+<meta property="og:title" content="Laela Zorana — AI Engineer" />
+<meta property="og:description" content="I ship production AI products end-to-end (ML · full-stack · cloud). Real products, real metrics — 0% hallucination RAG, 80% ticket deflection, ~600 req/s inference." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://laelazorana.github.io/" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Laela Zorana — AI Engineer" />
+<meta name="twitter:description" content="I ship production AI products end-to-end (ML · full-stack · cloud)." />
+<link rel="canonical" href="https://laelazorana.github.io/" />
+
+<!-- Inline SVG favicon: indigo→violet "LZ" compass mark -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ctext x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3ELZ%3C/text%3E%3C/svg%3E" />
+
+<!-- No-flash theme: set the class before paint -->
+<script>
+  (function () {
+    try {
+      var k = "lz-theme";
+      var saved = localStorage.getItem(k);
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (saved === "dark" || (!saved && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<!-- Tailwind Play CDN, configured to match the ParaPilot design system. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
+          mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
+        },
+        colors: {
+          brand: {
+            50: "#eef2ff", 100: "#e0e7ff", 200: "#c7d2fe", 300: "#a5b4fc",
+            400: "#818cf8", 500: "#6366f1", 600: "#4f46e5", 700: "#4338ca",
+            800: "#3730a3", 900: "#312e81",
+          },
+        },
+      },
+    },
+  };
+</script>
+
+<!-- Inter (online nicety; system sans is the offline fallback). -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+<style>
   :root {
-    --ink: #16131f;
-    --muted: #635f72;
-    --card: #ffffff;
-    --line: rgba(20,16,40,.09);
-    --bg1: #f3f0ff;
-    --bg2: #eef4ff;
-    --accent: #6d4aff;
-    --accent2: #2563eb;
-    --dl: #6d4aff;      /* deep learning track */
-    --eval: #0e9f6e;    /* evaluation track */
-    --gold: #f59e0b;
-    --shadow: 0 10px 34px rgba(30,22,70,.07);
-    --shadow-h: 0 18px 48px rgba(30,22,70,.14);
-    --radius: 20px;
-    --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --pp-accent: 99 102 241;        /* indigo-500 */
+    --pp-accent-strong: 79 70 229;  /* indigo-600 */
+    --pp-violet: 139 92 246;        /* violet-500 */
   }
 
   html { scroll-behavior: smooth; }
+  /* Offset anchor targets so sticky nav doesn't cover headings. */
+  section[id] { scroll-margin-top: 5rem; }
+
   body {
-    font-family: var(--font);
-    color: var(--ink);
-    line-height: 1.65;
-    background:
-      radial-gradient(1200px 600px at 12% -8%, var(--bg1), transparent 60%),
-      radial-gradient(1100px 600px at 110% 4%, var(--bg2), transparent 55%),
-      #ffffff;
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+      Roboto, Helvetica, Arial, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
 
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(255,255,255,.78);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+  /* Subtle page-wide gradient wash (light + dark). */
+  .pp-bg {
+    background-image:
+      radial-gradient(60rem 60rem at 110% -10%, rgb(var(--pp-violet) / 0.10), transparent 55%),
+      radial-gradient(50rem 50rem at -10% 0%, rgb(var(--pp-accent) / 0.10), transparent 50%);
   }
-  nav .nav-in { max-width: 1060px; margin: 0 auto; padding: 0 24px; height: 62px;
-    display: flex; align-items: center; justify-content: space-between; }
-  nav .logo { font-weight: 800; letter-spacing: -.01em; font-size: 1.05rem; }
-  nav .logo span { color: var(--accent); }
-  nav .links { display: flex; gap: 26px; font-size: .92rem; font-weight: 600; color: var(--muted); }
-  nav .links a:hover { color: var(--accent); }
-  @media (max-width: 720px) { nav .links { display: none; } }
+  .dark .pp-bg {
+    background-image:
+      radial-gradient(60rem 60rem at 110% -10%, rgb(var(--pp-violet) / 0.16), transparent 55%),
+      radial-gradient(50rem 50rem at -10% 0%, rgb(var(--pp-accent) / 0.14), transparent 50%);
+  }
 
-  /* HERO */
-  header { padding: 84px 0 54px; }
-  .pill { display: inline-block; background: var(--ink); color: #fff; border-radius: 999px;
-    padding: 6px 15px; font-size: .7rem; font-weight: 700; letter-spacing: .09em; }
-  h1 { margin: 20px 0 0; font-size: 3.25rem; font-weight: 800; letter-spacing: -.025em; line-height: 1.06; }
-  h1 .grad { background: linear-gradient(95deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  .lede { margin: 22px 0 0; font-size: 1.28rem; color: var(--muted); max-width: 720px; line-height: 1.55; }
-  .lede b { color: var(--ink); font-weight: 700; }
-  .loc { margin-top: 16px; color: var(--muted); font-size: .98rem; font-weight: 600; }
-  .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 13px; padding: 12px 20px;
-    font-weight: 700; font-size: .96rem; border: 1px solid var(--line); background: var(--card);
-    box-shadow: var(--shadow); transition: transform .14s ease, box-shadow .14s ease; }
-  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-h); }
-  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none;
-    box-shadow: 0 12px 30px rgba(109,74,255,.34); }
-  @media (max-width: 720px) { h1 { font-size: 2.3rem; } .lede { font-size: 1.1rem; } }
+  /* Gradient brand text. */
+  .pp-gradient-text {
+    background-image: linear-gradient(100deg, rgb(var(--pp-accent-strong)), rgb(var(--pp-violet)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-  /* SECTIONS */
-  section { padding: 56px 0; }
-  .label { color: var(--accent); font-weight: 800; font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; }
-  h2 { font-size: 2rem; font-weight: 800; letter-spacing: -.02em; margin: 8px 0 6px; }
-  .sub { color: var(--muted); font-size: 1.05rem; max-width: 680px; }
+  /* Card. */
+  .pp-card {
+    border-radius: 1rem;
+    border: 1px solid rgb(226 232 240);
+    background: rgb(255 255 255 / 0.85);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.12);
+  }
+  .dark .pp-card {
+    border-color: rgb(51 65 85 / 0.7);
+    background: rgb(15 23 42 / 0.6);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 28px -14px rgb(0 0 0 / 0.6);
+  }
 
-  /* ABOUT */
-  .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 34px; align-items: start; }
-  .about p { color: var(--muted); font-size: 1.06rem; margin-top: 14px; }
-  .about p b { color: var(--ink); }
-  .facts { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding: 22px 24px; }
-  .facts .row { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
-  .facts .row:last-child { border-bottom: none; }
-  .facts .k { font-weight: 800; color: var(--ink); font-size: .9rem; min-width: 96px; }
-  .facts .v { color: var(--muted); font-size: .94rem; }
-  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+  /* Lift on hover for interactive cards. */
+  .pp-lift { transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+  .pp-lift:hover {
+    transform: translateY(-3px);
+    border-color: rgb(var(--pp-accent) / 0.5);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 18px 40px -16px rgb(var(--pp-accent) / 0.45);
+  }
+  .dark .pp-lift:hover {
+    border-color: rgb(var(--pp-accent) / 0.55);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 18px 44px -16px rgb(0 0 0 / 0.75);
+  }
 
-  /* PROJECT GRID */
-  .track-head { display: flex; align-items: center; gap: 12px; margin: 34px 0 18px; }
-  .track-dot { width: 12px; height: 12px; border-radius: 50%; }
-  .track-head h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -.01em; }
-  .track-head .note { color: var(--muted); font-weight: 600; font-size: .92rem; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
-  .proj { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding: 22px 22px 20px; display: flex; flex-direction: column;
-    border-top: 4px solid var(--c, var(--accent)); transition: transform .14s ease, box-shadow .14s ease; }
-  .proj:hover { transform: translateY(-3px); box-shadow: var(--shadow-h); }
-  .proj .top { display: flex; align-items: center; gap: 11px; }
-  .proj .ico { font-size: 1.5rem; line-height: 1; }
-  .proj h4 { font-size: 1.14rem; font-weight: 800; letter-spacing: -.01em; }
-  .proj .desc { color: var(--muted); font-size: .97rem; margin-top: 10px; flex: 1; }
-  .proj .metric { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 7px; }
-  .chip { font-family: var(--mono); font-size: .72rem; font-weight: 600; background: rgba(20,16,40,.05);
-    color: var(--ink); border-radius: 7px; padding: 4px 9px; }
-  .chip.hot { background: color-mix(in srgb, var(--c) 14%, #fff); color: var(--c); }
-  .proj .acts { margin-top: 16px; display: flex; gap: 9px; flex-wrap: wrap; }
-  .mini { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 700;
-    border-radius: 10px; padding: 8px 13px; border: 1px solid var(--line); transition: all .14s ease; }
-  .mini:hover { transform: translateY(-1px); }
-  .mini.demo { background: var(--c); color: #fff; border: none; }
-  .mini.soon { background: rgba(20,16,40,.04); color: var(--muted); cursor: default; }
-  .mini.soon:hover { transform: none; }
+  /* Focus ring (a11y). */
+  .pp-focus:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(var(--pp-accent) / 0.45);
+  }
 
-  /* RESEARCH */
-  .res { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 760px) { .res { grid-template-columns: 1fr; } }
-  .rescard { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding: 24px; }
-  .rescard h4 { font-size: 1.16rem; font-weight: 800; }
-  .rescard p { color: var(--muted); margin-top: 8px; font-size: .98rem; }
-  .rescard .big { font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -.02em; }
-
-  /* SKILLS */
-  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  @media (max-width: 760px) { .skills { grid-template-columns: 1fr; } }
-  .skcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding: 22px 24px; }
-  .skcard h4 { font-size: 1.02rem; font-weight: 800; margin-bottom: 12px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag { font-size: .84rem; font-weight: 600; background: rgba(109,74,255,.08); color: var(--accent);
-    border-radius: 8px; padding: 5px 11px; }
-
-  /* CONTACT */
-  .contact { text-align: center; background: linear-gradient(135deg, #1b1630, #2a2150); color: #fff;
-    border-radius: 28px; padding: 56px 28px; box-shadow: var(--shadow-h); }
-  .contact h2 { color: #fff; }
-  .contact p { color: rgba(255,255,255,.82); max-width: 560px; margin: 10px auto 0; font-size: 1.06rem; }
-  .contact .cta-row { justify-content: center; }
-  .contact .btn { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.18); box-shadow: none; }
-  .contact .btn.primary { background: #fff; color: #1b1630; }
-
-  footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 40px 0 56px; }
-  footer a { color: var(--accent); font-weight: 700; }
+  /* Reveal-on-scroll. */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .pp-lift { transition: none; }
+  }
 </style>
 </head>
-<body>
 
-<nav>
-  <div class="nav-in">
-    <a href="#top" class="logo">Laela <span>Zorana</span></a>
-    <div class="links">
-      <a href="#work">Work</a>
-      <a href="#deep-learning">Deep Learning</a>
-      <a href="#evaluation">Evaluation</a>
-      <a href="#research">Research</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
-</nav>
+<body class="pp-bg min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 antialiased">
 
-<div id="top"></div>
-<header>
-  <div class="wrap">
-    <span class="pill">ML · AI · DEEP LEARNING · NEURAL NETWORKS</span>
-    <h1>I build <span class="grad">neural networks</span>,<br>and I evaluate them rigorously.</h1>
-    <p class="lede">I am an applied <b>machine learning</b> and <b>AI engineer</b>. I train <b>deep learning</b>
-      models from the ground up, from a neural network written by hand in NumPy to fine-tuned transformers,
-      and I check every one of them with held-out tests, gradient checks, and honest failure cases.</p>
-    <p class="loc">Remote · Burr Ridge, IL · open to AI and ML contract and full time work</p>
-    <div class="cta-row">
-      <a href="#deep-learning" class="btn primary">See the live demos</a>
-      <a href="https://github.com/LaelaZorana" class="btn" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://huggingface.co/LaelaZ" class="btn" target="_blank" rel="noopener">Hugging Face</a>
-      <a href="https://www.kaggle.com/laelazorana" class="btn" target="_blank" rel="noopener">Kaggle</a>
-    </div>
+<a href="#products" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+
+<!-- ============================ NAV ============================ -->
+<header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/70 backdrop-blur-md dark:border-slate-800/70 dark:bg-slate-950/70">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+    <a href="#top" class="flex items-center gap-2.5 group pp-focus rounded-lg">
+      <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-lg shadow-brand-500/30 font-bold text-sm">LZ</span>
+      <span class="flex flex-col leading-none">
+        <span class="text-base font-bold tracking-tight">Laela <span class="pp-gradient-text">Zorana</span></span>
+        <span class="text-[10px] font-medium uppercase tracking-wider text-slate-400 dark:text-slate-500">AI Engineer</span>
+      </span>
+    </a>
+
+    <nav class="flex items-center gap-1 sm:gap-2">
+      <a href="#products" class="hidden sm:inline rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Products</a>
+      <a href="#about" class="hidden sm:inline rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">About</a>
+      <a href="#more" class="hidden md:inline rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">More work</a>
+      <a href="#contact" class="hidden sm:inline rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">Contact</a>
+
+      <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener"
+         class="ml-1 hidden md:inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 pp-focus">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+        GitHub
+      </a>
+
+      <button type="button" onclick="toggleTheme()" aria-label="Toggle dark mode"
+              class="pp-focus ml-1 grid h-9 w-9 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800">
+        <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </nav>
   </div>
 </header>
 
-<section id="work">
-  <div class="wrap">
-    <div class="label">About</div>
-    <h2>Ten years of building and quality work, now pointed at AI.</h2>
-    <div class="about">
+<span id="top"></span>
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-16 pb-10 sm:pt-24 sm:pb-16">
+  <div class="reveal">
+    <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300">
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+      </span>
+      Open to remote AI / ML roles — contract or full time
+    </span>
+
+    <h1 class="mt-6 text-4xl font-extrabold leading-[1.07] tracking-tight sm:text-6xl">
+      I ship <span class="pp-gradient-text">production AI products</span><br class="hidden sm:block" />
+      end-to-end.
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xl">
+      I'm <b class="font-semibold text-slate-900 dark:text-white">Laela Zorana</b>, an AI Engineer. I take real
+      problems from a blank repo to a working, tested product — across
+      <b class="font-semibold text-slate-900 dark:text-white">machine learning</b>,
+      <b class="font-semibold text-slate-900 dark:text-white">full-stack</b>, and
+      <b class="font-semibold text-slate-900 dark:text-white">cloud</b> — and I bring the numbers that prove each one works.
+    </p>
+
+    <p class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400">
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Remote · Burr Ridge, IL
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href="#products" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-700 pp-focus">
+        View work
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 pp-focus">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/laelazorana" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 pp-focus">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96v5.7h-3v-11h2.88v1.5h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v6.45z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <!-- Headline proof stats -->
+    <dl class="mt-12 grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-4">
       <div>
-        <p>My career has moved through systems where mistakes are expensive, in banking, risk, and
-          large operations. That taught me to <b>prove things work</b> before they ship, not after.</p>
-        <p>Now I do that for machine learning. On the build side I train <b>neural networks</b>:
-          a multilayer perceptron coded from scratch in NumPy, a convolutional network fine tuned for
-          vision, a <b>transformer</b> fine tuned for language, and an <b>LSTM</b> for time series.
-          On the quality side I build the tools that catch bad models and bad data before they cost
-          anyone: rubric scoring, RLHF preference rating, inter rater agreement, and package validation.</p>
-        <p>Every project below ships two things together: <b>the model and the evidence it works</b>.
-          Each card has a live demo you can open and click in under a minute.</p>
+        <dt class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">7</dt>
+        <dd class="mt-1 text-sm text-slate-500 dark:text-slate-400">flagship products shipped</dd>
       </div>
-      <div class="facts">
-        <div class="row"><div class="k">Focus</div><div class="v">Applied ML, deep learning, neural networks, model evaluation</div></div>
-        <div class="row"><div class="k">Builds</div><div class="v">CNNs, RNNs / LSTMs, transformers, training from scratch, transfer learning, fine tuning</div></div>
-        <div class="row"><div class="k">Proves</div><div class="v">Held out tests, gradient checks, failure analysis, inter rater agreement</div></div>
-        <div class="row"><div class="k">Stack</div><div class="v">Python, PyTorch, NumPy, Hugging Face, scikit learn, Gradio</div></div>
-        <div class="row"><div class="k">Learning</div><div class="v">Purdue postgrad in Cloud and ML, Vanderbilt AI Agents</div></div>
+      <div>
+        <dt class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">0%</dt>
+        <dd class="mt-1 text-sm text-slate-500 dark:text-slate-400">hallucination on grounded RAG</dd>
+      </div>
+      <div>
+        <dt class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">~600<span class="text-xl align-top">/s</span></dt>
+        <dd class="mt-1 text-sm text-slate-500 dark:text-slate-400">inference req/s, p50 8&nbsp;ms</dd>
+      </div>
+      <div>
+        <dt class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">80%</dt>
+        <dd class="mt-1 text-sm text-slate-500 dark:text-slate-400">support tickets deflected</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================ FEATURED PRODUCTS ============================ -->
+<section id="products" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <div class="reveal max-w-3xl">
+    <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">Featured products</p>
+    <h2 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Real products, with the numbers to prove them.</h2>
+    <p class="mt-3 text-lg text-slate-600 dark:text-slate-300">
+      Seven end-to-end builds, each framed as <span class="font-semibold text-slate-900 dark:text-white">problem → solution → result</span>.
+      Every card links the source. Live demos are deploying — code is fully runnable today.
+    </p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+    <!-- 1. ParaPilot -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">ParaPilot</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">RAG</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        An Illinois divorce "legal GPS" — a grounded, cited RAG assistant that answers procedural questions with
+        source links instead of guesses. <span class="text-slate-500 dark:text-slate-400">Problem: legal chatbots invent law. Solution: retrieval that refuses to answer without a citation. Result: it stops hallucinating.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">0% hallucination vs 100% on baseline</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Python</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">FastAPI</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">RAG</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">htmx</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/parapilot" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+    <!-- 2. SupportCopilot -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">SupportCopilot</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">RAG + Ops</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        E-commerce support automation that answers customers and applies <span class="font-medium text-slate-700 dark:text-slate-200">policy-correct refunds</span> from the knowledge base.
+        <span class="text-slate-500 dark:text-slate-400">Problem: support headcount can't scale. Solution: RAG grounded in store policy with a refund-decision engine. Result: most tickets never reach a human.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">80% ticket deflection · ~$7.8k/mo ROI</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Python</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">RAG</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">FastAPI</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Dashboard</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/ecom-support-copilot" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+    <!-- 3. InterviewCoach -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">InterviewCoach</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Full-stack</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        Paste a job description, get tailored interview questions, then have your answers <span class="font-medium text-slate-700 dark:text-slate-200">rubric-scored</span> with feedback.
+        <span class="text-slate-500 dark:text-slate-400">Problem: generic prep doesn't match the role. Solution: JD → questions → graded answers in one flow. Result: a full-stack app you can run offline in one click.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">Full-stack · one-click offline demo</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Python</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">FastAPI</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">LLM</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Rubric eval</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/ai-interview-coach" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+    <!-- 4. LLM Security Scanner -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">LLM Security Scanner</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Security</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        An LLM red-team harness plus governance mapped to <span class="font-medium text-slate-700 dark:text-slate-200">NIST AI RMF</span> and <span class="font-medium text-slate-700 dark:text-slate-200">ISO 42001</span>.
+        <span class="text-slate-500 dark:text-slate-400">Problem: teams ship LLMs with no safety evidence. Solution: automated injection / jailbreak / PII probes. Result: a severity-scored report you can hand to compliance.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">Injection / jailbreak / PII probes, severity-scored</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Python</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Red-team</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">NIST AI RMF</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">ISO 42001</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/llm-security-scanner" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+    <!-- 5. Solidity Audit AI -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">Solidity Audit AI</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Web3 · Security</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        A smart-contract auditor with <span class="font-medium text-slate-700 dark:text-slate-200">10 SWC detectors</span> and a paste-a-contract web UI.
+        <span class="text-slate-500 dark:text-slate-400">Problem: contract bugs are expensive and noisy to find. Solution: targeted detectors with a clean report. Result: catches real issues with zero false positives on safe fixtures.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">0 false positives on safe fixtures</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Python</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Solidity</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">SWC</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Web UI</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/solidity-audit-ai" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+    <!-- 6. DistilBERT Emotion API -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">DistilBERT Emotion API</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">MLOps</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        A production inference service for emotion classification, instrumented with <span class="font-medium text-slate-700 dark:text-slate-200">Prometheus + Grafana</span>.
+        <span class="text-slate-500 dark:text-slate-400">Problem: a notebook model isn't a service. Solution: a real API with monitoring and load characteristics. Result: high throughput at single-digit-ms latency.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">~600 req/s · p50 8&nbsp;ms · Prometheus/Grafana</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">FastAPI</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Transformers</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Docker</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Prometheus</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/distilbert-emotion-api" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+    <!-- 7. CommercePipeline -->
+    <article class="pp-card pp-lift flex flex-col p-6" style="border-top: 4px solid rgb(79 70 229);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 text-white shadow-md" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+          </span>
+          <h3 class="text-lg font-bold tracking-tight">CommercePipeline</h3>
+        </div>
+        <span class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Data Eng</span>
+      </div>
+      <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        A DuckDB analytics pipeline: raw → marts → <span class="font-medium text-slate-700 dark:text-slate-200">data-quality gates</span> → dashboard.
+        <span class="text-slate-500 dark:text-slate-400">Problem: dashboards lie when the data is bad. Solution: tested transforms with quality gates that fail the build. Result: every metric is gated before it ships.</span>
+      </p>
+      <div class="mt-4 rounded-lg bg-slate-50 px-3 py-2.5 dark:bg-slate-800/60">
+        <p class="text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">Standout metric</p>
+        <p class="mt-0.5 text-sm font-bold text-slate-900 dark:text-white">100k+ rows · 16/16 quality gates passing</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">DuckDB</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Python</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">SQL</span>
+        <span class="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-slate-800 dark:text-slate-300">Streamlit</span>
+      </div>
+      <div class="mt-5 flex items-center gap-2">
+        <a href="https://github.com/LaelaZorana/ecommerce-data-pipeline" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          Code
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500" title="Live demo deploying soon">
+          Live demo
+          <span class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide dark:bg-slate-800">soon</span>
+        </span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section id="about" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-start">
+    <div class="reveal">
+      <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">About</p>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">An engineer who ships — and proves it.</h2>
+      <div class="mt-5 space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+        <p>
+          My career has moved through systems where mistakes are expensive — banking, risk, and large
+          operations. That taught me to <b class="font-semibold text-slate-900 dark:text-white">prove things work before they ship</b>, not after.
+        </p>
+        <p>
+          Now I point that discipline at AI. I build complete products: a grounded RAG assistant that won't
+          answer without a citation, support automation that applies policy-correct refunds, an LLM red-team
+          harness mapped to NIST and ISO governance, a smart-contract auditor, a high-throughput inference
+          service, and a tested data pipeline with quality gates. <b class="font-semibold text-slate-900 dark:text-white">Each one ships with the model and the evidence it works.</b>
+        </p>
+        <p>
+          I'm comfortable across the whole stack — training and fine-tuning models, wiring them into clean
+          FastAPI services and front-ends, and deploying with Docker, CI, and monitoring. I care about the
+          unglamorous parts: tests, latency budgets, failure cases, and a demo a recruiter can run in under a minute.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal pp-card p-6 lg:sticky lg:top-24">
+      <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">At a glance</h3>
+      <dl class="mt-4 divide-y divide-slate-200 dark:divide-slate-800">
+        <div class="flex gap-4 py-3">
+          <dt class="w-24 shrink-0 text-sm font-semibold text-slate-900 dark:text-white">Role</dt>
+          <dd class="text-sm text-slate-600 dark:text-slate-300">AI Engineer — ML · full-stack · cloud</dd>
+        </div>
+        <div class="flex gap-4 py-3">
+          <dt class="w-24 shrink-0 text-sm font-semibold text-slate-900 dark:text-white">Ships</dt>
+          <dd class="text-sm text-slate-600 dark:text-slate-300">RAG, LLM apps, inference services, data pipelines, security tooling</dd>
+        </div>
+        <div class="flex gap-4 py-3">
+          <dt class="w-24 shrink-0 text-sm font-semibold text-slate-900 dark:text-white">Proves</dt>
+          <dd class="text-sm text-slate-600 dark:text-slate-300">Held-out tests, eval harnesses, latency benchmarks, data-quality gates</dd>
+        </div>
+        <div class="flex gap-4 py-3">
+          <dt class="w-24 shrink-0 text-sm font-semibold text-slate-900 dark:text-white">Stack</dt>
+          <dd class="flex flex-wrap gap-1.5">
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Python</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">PyTorch</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Transformers</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">FastAPI</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">RAG</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Docker</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">DuckDB</span>
+            <span class="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">Prometheus</span>
+          </dd>
+        </div>
+        <div class="flex gap-4 py-3">
+          <dt class="w-24 shrink-0 text-sm font-semibold text-slate-900 dark:text-white">Learning</dt>
+          <dd class="text-sm text-slate-600 dark:text-slate-300">Purdue postgrad in Cloud &amp; ML · Vanderbilt AI Agents</dd>
+        </div>
+        <div class="flex gap-4 py-3">
+          <dt class="w-24 shrink-0 text-sm font-semibold text-slate-900 dark:text-white">Based</dt>
+          <dd class="text-sm text-slate-600 dark:text-slate-300">Remote · Burr Ridge, IL</dd>
+        </div>
+      </dl>
+      <div class="mt-5 flex flex-wrap gap-2">
+        <a href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener" class="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 pp-focus">Hugging Face</a>
+        <a href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener" class="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 pp-focus">Kaggle</a>
+        <a href="https://dagshub.com/laelazorana" target="_blank" rel="noopener" class="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 pp-focus">DagsHub</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="deep-learning">
-  <div class="wrap">
-    <div class="label">Build side</div>
-    <h2>Deep learning and neural networks</h2>
-    <p class="sub">Four models I trained and verified, each with a live demo, the source, and the numbers behind it.</p>
+<!-- ============================ MORE WORK ============================ -->
+<section id="more" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <div class="reveal max-w-3xl">
+    <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">More work</p>
+    <h2 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Open-source repos &amp; experiments.</h2>
+    <p class="mt-3 text-lg text-slate-600 dark:text-slate-300">Earlier evaluation, MLOps, and performance work — the foundations behind the flagship products.</p>
+  </div>
 
-    <div class="track-head">
-      <span class="track-dot" style="background:var(--dl)"></span>
-      <h3>Trained from the ground up</h3>
-    </div>
-    <div class="grid">
-
-      <div class="proj" style="--c:var(--dl)">
-        <div class="top"><span class="ico">🧠</span><h4>Neural Net From Scratch</h4></div>
-        <div class="desc">A multilayer perceptron written by hand in NumPy, no framework. Forward pass,
-          backprop, softmax, and Adam all coded from zero. Its gradients are checked against finite
-          differences in the test suite, so the math is proven, not assumed.</div>
-        <div class="metric">
-          <span class="chip hot">~97.7% MNIST</span><span class="chip">gradient checked</span><span class="chip">NumPy only</span>
-        </div>
-        <div class="acts">
-          <a class="mini demo" href="https://huggingface.co/spaces/LaelaZ/nn-from-scratch" target="_blank" rel="noopener">▶ Live demo</a>
-          <a class="mini" href="https://github.com/LaelaZorana/nn-from-scratch" target="_blank" rel="noopener">Code</a>
-        </div>
+  <div class="reveal mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <a href="https://github.com/LaelaZorana/ai-agent-scenario-qc" target="_blank" rel="noopener" class="pp-card pp-lift group flex items-center justify-between gap-3 p-4 pp-focus">
+      <div>
+        <p class="font-semibold tracking-tight">ai-agent-scenario-qc</p>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Rubric scoring + defect log for agent training scenarios</p>
       </div>
-
-      <div class="proj" style="--c:var(--dl)">
-        <div class="top"><span class="ico">🔥</span><h4>CNN + Grad-CAM</h4></div>
-        <div class="desc">A ResNet18 fine tuned by transfer learning from ImageNet to a new task, ants
-          versus bees. A hand written Grad-CAM draws a heatmap of where the network actually looked, so
-          you can check it keyed on the insect and not the background.</div>
-        <div class="metric">
-          <span class="chip hot">~94% val acc</span><span class="chip">transfer learning</span><span class="chip">interpretability</span>
-        </div>
-        <div class="acts">
-          <a class="mini demo" href="https://huggingface.co/spaces/LaelaZ/cnn-gradcam" target="_blank" rel="noopener">▶ Live demo</a>
-          <a class="mini" href="https://github.com/LaelaZorana/cnn-gradcam" target="_blank" rel="noopener">Code</a>
-        </div>
+      <svg class="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+    <a href="https://github.com/LaelaZorana/rlhf-pairwise-rater" target="_blank" rel="noopener" class="pp-card pp-lift group flex items-center justify-between gap-3 p-4 pp-focus">
+      <div>
+        <p class="font-semibold tracking-tight">rlhf-pairwise-rater</p>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Preference rating with Cohen's kappa agreement checks</p>
       </div>
-
-      <div class="proj" style="--c:var(--dl)">
-        <div class="top"><span class="ico">💬</span><h4>DistilBERT Emotion</h4></div>
-        <div class="desc">A transformer fine tuned to read a sentence and name the emotion underneath it,
-          across six classes. The model is published on the Hugging Face Hub with a full model card, and
-          I report held out results, including the cases it gets confidently wrong.</div>
-        <div class="metric">
-          <span class="chip hot">92.0% test acc</span><span class="chip">0.874 macro F1</span><span class="chip">model on Hub</span>
-        </div>
-        <div class="acts">
-          <a class="mini demo" href="https://huggingface.co/spaces/LaelaZ/distilbert-emotion" target="_blank" rel="noopener">▶ Live demo</a>
-          <a class="mini" href="https://github.com/LaelaZorana/distilbert-emotion" target="_blank" rel="noopener">Code</a>
-          <a class="mini" href="https://huggingface.co/LaelaZ/distilbert-emotion" target="_blank" rel="noopener">Model</a>
-        </div>
+      <svg class="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+    <a href="https://github.com/LaelaZorana/content-policy-rater" target="_blank" rel="noopener" class="pp-card pp-lift group flex items-center justify-between gap-3 p-4 pp-focus">
+      <div>
+        <p class="font-semibold tracking-tight">content-policy-rater</p>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Policy-based content labeling and rater tooling</p>
       </div>
-
-      <div class="proj" style="--c:var(--dl)">
-        <div class="top"><span class="ico">📈</span><h4>Time-Series LSTM</h4></div>
-        <div class="desc">A recurrent network for forecasting and anomaly detection on financial style
-          data, the bridge from my risk background to deep learning. The backtest beats a naive baseline
-          by a wide margin, and it flags spikes the moment they start.</div>
-        <div class="metric">
-          <span class="chip hot">83% better than naive</span><span class="chip">anomaly detection</span><span class="chip">finance bridge</span>
-        </div>
-        <div class="acts">
-          <a class="mini" href="https://github.com/LaelaZorana/timeseries-lstm" target="_blank" rel="noopener">Code</a>
-          <span class="mini soon">▶ Live demo launching soon</span>
-        </div>
+      <svg class="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+    <a href="https://github.com/LaelaZorana/mlops-training-pipeline" target="_blank" rel="noopener" class="pp-card pp-lift group flex items-center justify-between gap-3 p-4 pp-focus">
+      <div>
+        <p class="font-semibold tracking-tight">mlops-training-pipeline</p>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Reproducible training pipeline with tracking</p>
       </div>
+      <svg class="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+    <a href="https://github.com/LaelaZorana/triton-kernel-lab" target="_blank" rel="noopener" class="pp-card pp-lift group flex items-center justify-between gap-3 p-4 pp-focus">
+      <div>
+        <p class="font-semibold tracking-tight">triton-kernel-lab</p>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">GPU kernel experiments in Triton</p>
+      </div>
+      <svg class="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+    <a href="https://github.com/LaelaZorana/python-perf-optimizer" target="_blank" rel="noopener" class="pp-card pp-lift group flex items-center justify-between gap-3 p-4 pp-focus">
+      <div>
+        <p class="font-semibold tracking-tight">python-perf-optimizer</p>
+        <p class="mt-0.5 text-sm text-slate-500 dark:text-slate-400">Profiling-driven Python performance tooling</p>
+      </div>
+      <svg class="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-brand-600 dark:group-hover:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+  </div>
 
-    </div>
+  <div class="reveal mt-6">
+    <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:underline dark:text-brand-400 pp-focus">
+      See all repositories on GitHub
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
   </div>
 </section>
 
-<section id="evaluation">
-  <div class="wrap">
-    <div class="label">Quality side</div>
-    <h2>AI evaluation and quality control</h2>
-    <p class="sub">The tools I build to catch bad models and bad training data before they ship. Each runs
-      live and each is backed by a real test suite.</p>
-
-    <div class="track-head">
-      <span class="track-dot" style="background:var(--eval)"></span>
-      <h3>Open source, with live demos</h3>
-    </div>
-    <div class="grid">
-
-      <div class="proj" style="--c:var(--eval)">
-        <div class="top"><span class="ico">🔍</span><h4>AI Agent Scenario QC</h4></div>
-        <div class="desc">Paste an agent training scenario and get back a weighted rubric score out of 100
-          and a severity tagged defect log: undeclared tools, undefined personas, out of order steps,
-          empty success criteria. It catches the quiet defects before a labeling team ever sees them.</div>
-        <div class="metric"><span class="chip hot">rubric + defects</span><span class="chip">10 tests</span></div>
-        <div class="acts">
-          <a class="mini demo" href="https://huggingface.co/spaces/LaelaZ/ai-agent-scenario-qc" target="_blank" rel="noopener">▶ Live demo</a>
-          <a class="mini" href="https://github.com/LaelaZorana/ai-agent-scenario-qc" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="proj" style="--c:var(--eval)">
-        <div class="top"><span class="ico">⚖️</span><h4>RLHF Pairwise Rater</h4></div>
-        <div class="desc">The workflow behind preference data for RLHF. Rate two model responses on four
-          axes, and the tool flags self consistency errors and measures inter rater agreement with
-          Cohen's kappa, so you can tell whether two people apply the same standard.</div>
-        <div class="metric"><span class="chip hot">Cohen's kappa</span><span class="chip">consistency check</span></div>
-        <div class="acts">
-          <a class="mini demo" href="https://huggingface.co/spaces/LaelaZ/rlhf-pairwise-rater" target="_blank" rel="noopener">▶ Live demo</a>
-          <a class="mini" href="https://github.com/LaelaZorana/rlhf-pairwise-rater" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="proj" style="--c:var(--eval)">
-        <div class="top"><span class="ico">📦</span><h4>SCORM QA Validator</h4></div>
-        <div class="desc">E-learning packages fail silently on upload, a missing launch file just shows a
-          blank screen. This tool opens the package, parses the manifest, and hands you a defect log with
-          severity and location before it ever ships to an LMS.</div>
-        <div class="metric"><span class="chip hot">silent failure catcher</span><span class="chip">6 tests</span></div>
-        <div class="acts">
-          <a class="mini demo" href="https://huggingface.co/spaces/LaelaZ/scorm-qa-validator" target="_blank" rel="noopener">▶ Live demo</a>
-          <a class="mini" href="https://github.com/LaelaZorana/scorm-qa-validator" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-
-      <div class="proj" style="--c:var(--eval)">
-        <div class="top"><span class="ico">🧰</span><h4>More on GitHub</h4></div>
-        <div class="desc">Additional evaluation and engineering repositories, including content policy
-          rating, annotation tooling, and performance work. Browse the full set of open source projects.</div>
-        <div class="metric"><span class="chip">open source</span></div>
-        <div class="acts">
-          <a class="mini" href="https://github.com/LaelaZorana" target="_blank" rel="noopener">View all repos</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="research">
-  <div class="wrap">
-    <div class="label">Research and competitions</div>
-    <h2>Pushing on hard problems</h2>
-    <div class="res">
-      <div class="rescard">
-        <div class="big">~66.7%</div>
-        <h4>ARC Prize 2026, ARC-AGI-2</h4>
-        <p>A solver built on hierarchical program induction with majority voting, plus Unsloth fine
-          tuning. Competing in the ARC Prize, with a paper track write up in progress.</p>
-        <div class="acts" style="margin-top:14px">
-          <a class="mini" href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">Kaggle profile</a>
-        </div>
-      </div>
-      <div class="rescard">
-        <div class="big">Nemotron</div>
-        <h4>NVIDIA Nemotron Reasoning Challenge</h4>
-        <p>Reasoning and exploratory data analysis on NVIDIA's Nemotron models, working on model
-          reasoning quality and evaluation.</p>
-        <div class="acts" style="margin-top:14px">
-          <a class="mini" href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener">Kaggle profile</a>
-        </div>
+<!-- ============================ CONTACT ============================ -->
+<section id="contact" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <div class="reveal relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 via-brand-600 to-violet-600 px-6 py-14 text-center shadow-xl sm:px-12">
+    <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl"></div>
+    <div class="pointer-events-none absolute -bottom-20 -left-10 h-64 w-64 rounded-full bg-violet-300/20 blur-3xl"></div>
+    <div class="relative">
+      <p class="text-xs font-bold uppercase tracking-[0.14em] text-white/80">Contact</p>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Let's ship something that works.</h2>
+      <p class="mx-auto mt-3 max-w-xl text-lg text-white/85">
+        I'm open to remote AI / ML work, contract or full time. The fastest way to know if I'm a fit is to open one
+        of the products above — then send me a note.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a href="https://www.linkedin.com/in/laelazorana" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-brand-700 shadow-lg transition hover:bg-slate-100 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96v5.7h-3v-11h2.88v1.5h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v6.45z"/></svg>
+          Connect on LinkedIn
+        </a>
+        <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20 pp-focus">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.68.8.56A11.55 11.55 0 0 0 23.5 12.04C23.5 5.73 18.27.5 12 .5z"/></svg>
+          View GitHub
+        </a>
+        <a href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20 pp-focus">
+          Hugging Face
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="skills">
-  <div class="wrap">
-    <div class="label">Skills</div>
-    <h2>What I work with</h2>
-    <div class="skills">
-      <div class="skcard">
-        <h4>Deep learning and neural networks</h4>
-        <div class="tags">
-          <span class="tag">Neural networks</span><span class="tag">CNNs</span><span class="tag">RNNs / LSTMs</span>
-          <span class="tag">Transformers</span><span class="tag">Training from scratch</span>
-          <span class="tag">Transfer learning</span><span class="tag">Fine tuning</span><span class="tag">LoRA / QLoRA</span>
-          <span class="tag">Grad-CAM</span>
-        </div>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="border-t border-slate-200/70 dark:border-slate-800/70">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+      <div class="flex items-center gap-2.5">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-brand-600 to-violet-500 text-white text-xs font-bold shadow">LZ</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">Built &amp; shipped by <span class="font-semibold text-slate-700 dark:text-slate-200">Laela Zorana</span> · Remote · Burr Ridge, IL</span>
       </div>
-      <div class="skcard">
-        <h4>Machine learning</h4>
-        <div class="tags">
-          <span class="tag">Supervised learning</span><span class="tag">Time series</span>
-          <span class="tag">Anomaly detection</span><span class="tag">Model evaluation</span>
-          <span class="tag">scikit-learn</span><span class="tag">Feature work</span>
-        </div>
-      </div>
-      <div class="skcard">
-        <h4>ML evaluation and quality</h4>
-        <div class="tags">
-          <span class="tag">Rubric scoring</span><span class="tag">RLHF rating</span>
-          <span class="tag">Inter rater agreement</span><span class="tag">Held out testing</span>
-          <span class="tag">Failure analysis</span><span class="tag">Data quality</span>
-        </div>
-      </div>
-      <div class="skcard">
-        <h4>Engineering and tooling</h4>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">NumPy</span>
-          <span class="tag">Hugging Face</span><span class="tag">Gradio</span><span class="tag">Testing</span>
-          <span class="tag">Git</span>
-        </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+        <a href="https://github.com/LaelaZorana" target="_blank" rel="noopener" class="font-medium text-slate-500 transition hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400 pp-focus rounded">GitHub</a>
+        <a href="https://www.linkedin.com/in/laelazorana" target="_blank" rel="noopener" class="font-medium text-slate-500 transition hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400 pp-focus rounded">LinkedIn</a>
+        <a href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener" class="font-medium text-slate-500 transition hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400 pp-focus rounded">Hugging Face</a>
+        <a href="https://www.kaggle.com/laelazorana" target="_blank" rel="noopener" class="font-medium text-slate-500 transition hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400 pp-focus rounded">Kaggle</a>
+        <a href="https://dagshub.com/laelazorana" target="_blank" rel="noopener" class="font-medium text-slate-500 transition hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400 pp-focus rounded">DagsHub</a>
       </div>
     </div>
+    <p class="mt-6 text-center text-xs text-slate-400 dark:text-slate-600">© <span id="year">2026</span> Laela Zorana. All rights reserved.</p>
   </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact">
-      <div class="label" style="color:#b9a9ff">Contact</div>
-      <h2>Let's build and test something.</h2>
-      <p>I am open to remote AI and ML work, contract or full time. The fastest way to know if I am a fit
-        is to open one of the live demos above, then send me a note.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="mailto:zoranalaela9@gmail.com">Email me</a>
-        <a class="btn" href="https://www.linkedin.com/in/laelazorana" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/LaelaZorana" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://huggingface.co/LaelaZ" target="_blank" rel="noopener">Hugging Face</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  Built and shipped by Laela Zorana · <a href="https://github.com/LaelaZorana">github.com/LaelaZorana</a>
 </footer>
+
+<!-- ============================ SCRIPTS ============================ -->
+<script>
+  (function () {
+    "use strict";
+    var root = document.documentElement;
+    var THEME_KEY = "lz-theme";
+
+    window.toggleTheme = function () {
+      var isDark = root.classList.toggle("dark");
+      try { localStorage.setItem(THEME_KEY, isDark ? "dark" : "light"); } catch (e) {}
+    };
+
+    // Reveal-on-scroll (graceful no-op if IntersectionObserver is missing).
+    function initReveal() {
+      var els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+      if (!("IntersectionObserver" in window)) {
+        els.forEach(function (el) { el.classList.add("in"); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      els.forEach(function (el) { io.observe(el); });
+    }
+
+    // Keep the footer year current.
+    function setYear() {
+      var y = document.getElementById("year");
+      if (y) y.textContent = String(new Date().getFullYear());
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () { initReveal(); setYear(); });
+    } else {
+      initReveal(); setYear();
+    }
+  })();
+</script>
 
 </body>
 </html>
